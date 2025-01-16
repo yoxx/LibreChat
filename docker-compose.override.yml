@@ -12,12 +12,12 @@ version: '3.8'
 # EXAMPLE: if you want to use the config file and the latest numbered release docker image the result will be:
 
 services:
-  api:
-    volumes:
-    - type: bind
-      source: ./librechat.yaml
-      target: /app/librechat.yaml
-    image: ghcr.io/danny-avila/librechat:latest
+#   api:
+#     volumes:
+#     - type: bind
+#       source: ./librechat.yaml
+#       target: /app/librechat.yaml
+#     image: ghcr.io/danny-avila/librechat:latest
 
 # ---------------------------------------------------
 
@@ -41,9 +41,9 @@ services:
 #   api:
 #     image: ghcr.io/danny-avila/librechat-dev:latest
  
-# # BUILD FROM LATEST IMAGE (NUMBERED RELEASE)
-#   api:
-#     image: ghcr.io/danny-avila/librechat:latest
+# BUILD FROM LATEST IMAGE (NUMBERED RELEASE)
+  api:
+    image: ghcr.io/danny-avila/librechat:latest
 
 # # BUILD FROM LATEST API IMAGE
 #   api:
