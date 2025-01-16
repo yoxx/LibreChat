@@ -96,25 +96,25 @@ services:
 #       - 7700:7700
 
 # # USE RAG API IMAGE WITH LOCAL EMBEDDINGS SUPPORT
- rag_api:
-   image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
+  rag_api:
+    image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
 # For Linux user: 
-   extra_hosts:
-     - "host.docker.internal:host-gateway"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 # # ADD OLLAMA
- ollama:
-   image: ollama/ollama:latest
-   deploy:
-     resources:
-       reservations:
-         devices:
-           - driver: nvidia
-             capabilities: [compute, utility]
-   ports:
-     - "11434:11434"
-   volumes:
-     - ./ollama:/root/.ollama
+  ollama:
+    image: ollama/ollama:latest
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [compute, utility]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama:/root/.ollama
 
 # # ADD LITELLM BASIC - NEED TO CONFIGURE litellm-config.yaml, ONLY NEED ENV TO ENABLE REDIS FOR CACHING OR LANGFUSE FOR MONITORING
 #  litellm:
@@ -163,12 +163,12 @@ services:
 #      - TELEMETRY_ENABLED=${TELEMETRY_ENABLED:-true}
 #      - NEXT_PUBLIC_SIGN_UP_DISABLED=${NEXT_PUBLIC_SIGN_UP_DISABLED:-false}
 #      - LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES=${LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES:-false}
- db:
-   image: postgres
-   restart: always
-   environment:
-     - POSTGRES_USER=postgres
-     - POSTGRES_PASSWORD=PostgresChangeMe
-     - POSTGRES_DB=postgres
-   volumes:
-     - ./postgres:/var/lib/postgresql/data
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=PostgresChangeMe
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
