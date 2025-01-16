@@ -11,13 +11,13 @@
 
 # EXAMPLE: if you want to use the config file and the latest numbered release docker image the result will be:
 
-# services:
-#   api:
-#     volumes:
-#     - type: bind
-#       source: ./librechat.yaml
-#       target: /app/librechat.yaml
-#     image: ghcr.io/danny-avila/librechat:latest
+services:
+  api:
+    volumes:
+    - type: bind
+      source: ./librechat.yaml
+      target: /app/librechat.yaml
+    image: ghcr.io/danny-avila/librechat:latest
 
 # ---------------------------------------------------
 
@@ -54,22 +54,22 @@
 #     image: ghcr.io/danny-avila/librechat-api:latest
 
 # # ADD MONGO-EXPRESS
-#   mongo-express:
-#     image: mongo-express
-#     container_name: mongo-express
-#     environment:
-#       ME_CONFIG_MONGODB_SERVER: mongodb
-#       ME_CONFIG_BASICAUTH_USERNAME: admin
-#       ME_CONFIG_BASICAUTH_PASSWORD: password
-#     ports:
-#       - '8081:8081'
-#     depends_on:
-#       - mongodb
-#     restart: always
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: password
+    ports:
+      - '8081:8081'
+    depends_on:
+      - mongodb
+    restart: always
 
 # # USE MONGODB V4.4.18 - FOR OLDER CPU WITHOUT AVX SUPPORT
-#   mongodb:
-#     image: mongo:4.4.18
+  mongodb:
+    image: mongo:4.4.18
 
 # # DISABLE THE MONGODB CONTAINER - YOU NEED TO SET AN ALTERNATIVE MONGODB URI IN THE .ENV FILE
 #   api:
@@ -96,25 +96,25 @@
 #       - 7700:7700
 
 # # USE RAG API IMAGE WITH LOCAL EMBEDDINGS SUPPORT
-#  rag_api:
-#    image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
-# # For Linux user: 
-#    extra_hosts:
-#      - "host.docker.internal:host-gateway"
+ rag_api:
+   image: ghcr.io/danny-avila/librechat-rag-api-dev:latest
+# For Linux user: 
+   extra_hosts:
+     - "host.docker.internal:host-gateway"
 
 # # ADD OLLAMA
-#  ollama:
-#    image: ollama/ollama:latest
-#    deploy:
-#      resources:
-#        reservations:
-#          devices:
-#            - driver: nvidia
-#              capabilities: [compute, utility]
-#    ports:
-#      - "11434:11434"
-#    volumes:
-#      - ./ollama:/root/.ollama
+ ollama:
+   image: ollama/ollama:latest
+   deploy:
+     resources:
+       reservations:
+         devices:
+           - driver: nvidia
+             capabilities: [compute, utility]
+   ports:
+     - "11434:11434"
+   volumes:
+     - ./ollama:/root/.ollama
 
 # # ADD LITELLM BASIC - NEED TO CONFIGURE litellm-config.yaml, ONLY NEED ENV TO ENABLE REDIS FOR CACHING OR LANGFUSE FOR MONITORING
 #  litellm:
@@ -163,12 +163,12 @@
 #      - TELEMETRY_ENABLED=${TELEMETRY_ENABLED:-true}
 #      - NEXT_PUBLIC_SIGN_UP_DISABLED=${NEXT_PUBLIC_SIGN_UP_DISABLED:-false}
 #      - LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES=${LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES:-false}
-#  db:
-#    image: postgres
-#    restart: always
-#    environment:
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=PostgresChangeMe
-#      - POSTGRES_DB=postgres
-#    volumes:
-#      - ./postgres:/var/lib/postgresql/data
+ db:
+   image: postgres
+   restart: always
+   environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=PostgresChangeMe
+     - POSTGRES_DB=postgres
+   volumes:
+     - ./postgres:/var/lib/postgresql/data
