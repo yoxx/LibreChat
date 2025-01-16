@@ -1,5 +1,5 @@
-# Please consult our docs for more info: https://www.librechat.ai/docs/configuration/docker_override
 version: '3.8'
+# Please consult our docs for more info: https://www.librechat.ai/docs/configuration/docker_override
 # TO USE THIS FILE, FIRST UNCOMMENT THE LINE ('services:')
 
 # THEN UNCOMMENT ONLY THE SECTION OR SECTIONS CONTAINING THE CHANGES YOU WANT TO APPLY
